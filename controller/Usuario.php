@@ -31,7 +31,7 @@ class Usuario{
 	$DB_PORT = "11147";*/
 
         //$this->conexion = mysqli_connect("localhost","root","","vihelp",3306);
-		$this->conexion = mysqli_connect("$DB_HOST","$DB_USER","$DB_PASSWORD","$DB_NAME","$DB_PORT");
+		$this->conexion = mysqli_connect("$DB_HOST","$DB_USER","$DB_PASSWORD","$DB_NAME",$DB_PORT);
 
 
 		$this->conexionpdo = new PDO("mysql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME",$DB_USER,$DB_PASSWORD);
