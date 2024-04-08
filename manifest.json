@@ -1,0 +1,71 @@
+{
+  "name": "VIHelp",
+  "short_name": "VIHelp",
+  "description": "",
+  "theme_color": "#abd1f2",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "./",
+  "start_url": "index.php",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "./view/assets/img/icon/v-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "form_factor": "wide"
+      
+    },
+    {
+      "src": "./view/assets/img/icon/v-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./view/assets/img/icon/v-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+  
+}
+
