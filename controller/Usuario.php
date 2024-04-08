@@ -18,17 +18,17 @@ class Usuario{
 
     // Constructor privado para prevenir la creación de instancias desde fuera de la clase
     public function __construct() {
-	/*$DB_HOST= $_ENV["DB_HOST"];
+	$DB_HOST= $_ENV["DB_HOST"];
 	$DB_USER= $_ENV["DB_USER"];
 	$DB_PASSWORD = $_ENV["DB_PASSWORD"];
 	$DB_NAME = $_ENV["DB_NAME"];
-	$DB_PORT = $_ENV["DB_PORT"];*/
+	$DB_PORT = $_ENV["DB_PORT"];
 
-	$DB_HOST= "viaduct.proxy.rlwy.net";
+	/*$DB_HOST= "viaduct.proxy.rlwy.net";
 	$DB_USER= "root";
 	$DB_PASSWORD = "qRalDxPcmepuqgcpPrjtTfLxNSAlZkah";
 	$DB_NAME = "railway";
-	$DB_PORT = "11147";
+	$DB_PORT = "11147";*/
 
         //$this->conexion = mysqli_connect("localhost","root","","vihelp",3306);
 		$this->conexion = mysqli_connect("$DB_HOST","$DB_USER","$DB_PASSWORD","$DB_NAME","$DB_PORT");
