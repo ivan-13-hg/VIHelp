@@ -7,17 +7,34 @@ class Usuario{
 	se crea una mediante el constructor privado __construct. El método obtenerInstancia se encarga de devolver siempre la misma instancia única.*/ 
 	private static $instancia;  // Variable para almacenar la única instancia
     private $conexion;          // Variable para almacenar la conexión a la base de datos
-
+	private $conexionpdo;
 	private $nombre_us;
 	private $apellidos_us;
 	private $telefono_us;
 	private $correo_us;
 	private $contrasena_us;
 	private $foto_us;
+ 
 
     // Constructor privado para prevenir la creación de instancias desde fuera de la clase
-    private function __construct() {
-        $this->conexion = mysqli_connect("localhost", "root", "", "vihelp") or die("Existen Problemas con la Base de Datos");
+    public function __construct() {
+	/*$DB_HOST= $_ENV["DB_HOST"];
+	$DB_USER= $_ENV["DB_USER"];
+	$DB_PASSWORD = $_ENV["DB_PASSWORD"];
+	$DB_NAME = $_ENV["DB_NAME"];
+	$DB_PORT = $_ENV["DB_PORT"];*/
+
+	$DB_HOST= "viaduct.proxy.rlwy.net";
+	$DB_USER= "root";
+	$DB_PASSWORD = "qRalDxPcmepuqgcpPrjtTfLxNSAlZkah";
+	$DB_NAME = "railway";
+	$DB_PORT = "11147";
+
+        //$this->conexion = mysqli_connect("localhost","root","","vihelp",3306);
+		$this->conexion = mysqli_connect("$DB_HOST","$DB_USER","$DB_PASSWORD","$DB_NAME","$DB_PORT");
+
+
+		$this->conexionpdo = new PDO("mysql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME",$DB_USER,$DB_PASSWORD);
     }
     // Método para obtener la instancia única de Usuario
     public static function obtenerInstancia() {
@@ -27,8 +44,11 @@ class Usuario{
         return self::$instancia;
     }
     // Método para obtener la conexión a la base de datos
-    private function obtenerConexion() {
+    public function obtenerConexion() {
         return $this->conexion;
+    }
+	public function obtenerConexionPDO() {
+        return $this->conexionpdo;
     }
 	public function inicializar($nombre_us,$apellidos_us,$telefono_us,$correo_us,$contrasena_us,$foto_us){
 		$this->nombre_us=$nombre_us;
@@ -580,7 +600,7 @@ class Usuario{
 		FROM medicamentos M
 		INNER JOIN medicina ME ON ME.idmedicina = M.idmedicina
 		INNER JOIN viamedica V ON V.idviaMedica = M.idviaMedica
-		INNER JOIN formamedica F ON F.idfoRmaMedica = M.idformaMedica
+		INNER JOIN formamedica F ON F.idformaMedica = M.idformaMedica
 		WHERE M.Usuarios_clave_us ='$clave_us' 
 		ORDER BY M.clave_med ASC");
 	
@@ -637,7 +657,7 @@ class Usuario{
 		FROM medicamentos M
 		INNER JOIN medicina ME ON ME.idmedicina = M.idmedicina
 		INNER JOIN viamedica V ON V.idviaMedica = M.idviaMedica
-		INNER JOIN formamedica F ON F.idfoRmaMedica = M.idformaMedica
+		INNER JOIN formamedica F ON F.idformaMedica = M.idformaMedica
 		WHERE M.Usuarios_clave_us ='$clave_us' 
 		ORDER BY M.clave_med ASC");
 
@@ -703,6 +723,7 @@ class Usuario{
 										<p>Dosis : ".$reg['dosis_med']."</p>
 										<p>Cada ".$reg['fre_med']." Hrs</p>
 										<p>Por ".$reg['duracion_med']." Dias</p>
+										
 										<div class='container d-flex flex-column align-items-center'>
 											<button type='button' class='btn btn-outline-primary' data-bs-toggle='modal' 
 											data-bs-target='#exampleModalHorarios".$reg['clave_med']."' data-bs-whatever='@mdo'>Horarios</button>
@@ -728,7 +749,7 @@ class Usuario{
 																			</tr>
 																		</thead>
 																		<tbody>";
-																			$registroHorario=mysqli_query($this->obtenerConexion(),"SELECT * FROM notificacionmedicina WHERE claveMedicina = '$clave_med'");
+																			$registroHorario=mysqli_query($this->obtenerConexion(),"SELECT * FROM notificacionMedicina WHERE claveMedicina = '$clave_med'");
 																			$num = mysqli_num_rows($registroHorario);
 																			for($i = 1;$i <= $num ;$i++){	
 																			while($regHorario=mysqli_fetch_array($registroHorario)){

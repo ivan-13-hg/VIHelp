@@ -1,9 +1,13 @@
 <?php
 header('Content-Type: application/json');
 session_start();
+
+include ('../controller/Usuario.php');
+$u=Usuario::obtenerInstancia();
 if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']) == 1) {
   // Conectar a la base de datos
-  $pdo = new PDO('mysql:host=localhost;dbname=vihelp','root','');
+  //$pdo = new PDO('mysql:host=localhost;dbname=vihelp','root','');
+  $pdo= $u->obtenerConexionPDO();
   $correo = $_SESSION['usuario'];
   // Obtener notificaciones programadas para la fecha y hora actual
   date_default_timezone_set('America/Mexico_City');

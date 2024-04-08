@@ -3,7 +3,8 @@
 
   include ('../controller/Usuario.php');
   $u=Usuario::obtenerInstancia();
-  $conexion = mysqli_connect("localhost", "root", "", "vihelp") or die("Existen Problemas con la Base de Datos");
+  $conexion= $u->obtenerConexion();
+  //$conexion = mysqli_connect("localhost", "root", "", "vihelp") or die("Existen Problemas con la Base de Datos");
 
     $correo_doc = $_SESSION['usuario'];
     $tipo_us = $_SESSION['tipoUs'];

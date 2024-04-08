@@ -3,9 +3,13 @@ header('Content-Type: application/json');
 
 session_start();
 
+include ('../controller/Usuario.php');
+$u=Usuario::obtenerInstancia();
+
 if (isset($_SESSION['usuario']) && isset($_SESSION['tipoUs']) == 1 ) {
   // Conectar a la base de datos
-  $pdo = new PDO('mysql:host=localhost;dbname=vihelp','root','');
+  $pdo= $u->obtenerConexionPDO();
+  //$pdo = new PDO('mysql:host=localhost;dbname=vihelp','root','');
   $correo = $_SESSION['usuario'];
   $tipo_us = $_SESSION['tipoUs'];
   /*echo $tipo_us;
@@ -25,7 +29,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipoUs']) == 1 ) {
                         ME.nombre_med AS nombremed,
                         U.correo_us AS correous,
                         U.tipoUsuario AS tipoUsuario
-                        FROM notificacionmedicina N
+                        FROM notificacionMedicina N
                         INNER JOIN medicamentos M ON M.clave_med = N.claveMedicina
                         INNER JOIN medicina ME ON ME.idmedicina = M.idmedicina
                         INNER JOIN usuarios U ON U.clave_us = M.Usuarios_clave_us
